@@ -31,7 +31,7 @@ public class DateParserTest {
     public void parseRFC822DateTimeWithTimeZoneIsOk() throws Exception {
     	// Sat, 28 Mar 2020 13:42:38 IST
     	Calendar c = Calendar.getInstance();
-    	c.set(2020, 2, 28, 13, 42, 38);
+    	c.set(2020, Calendar.MARCH, 28, 13, 42, 38);
     	c.clear(Calendar.MILLISECOND);
     	c.setTimeZone(TimeZone.getTimeZone("IST"));
     	
