@@ -2,6 +2,7 @@ package com.rometools.rome.io.impl;
 
 import static org.junit.Assert.assertEquals;
 
+import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -34,10 +35,16 @@ public class DateParserTest {
     	c.set(2020, Calendar.MARCH, 28, 13, 42, 38);
     	c.clear(Calendar.MILLISECOND);
     	c.setTimeZone(TimeZone.getTimeZone("IST"));
-    	
+        DateFormatSymbols german = new DateFormatSymbols(Locale.GERMANY);
+        String saturday = german.getShortWeekdays()[7];
+        String march = german.getShortMonths()[2];
+
     	assertEquals(
                 c.getTime(),
-                DateParser.parseRFC822("Sa, 28 Mär 20 09:12:38 MEZ", Locale.GERMANY)
+                DateParser.parseRFC822(
+                    String.format("%s, 28 %s 20 09:12:38 MEZ", saturday, march),
+                    Locale.GERMANY
+                )
         );
     }
 }
